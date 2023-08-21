@@ -1,4 +1,4 @@
-FROM alpine:3.18.2 AS builder
+FROM dhanush-docker-test-virtual/alpine:3.18.2 AS builder
 RUN apk add --no-cache openjdk17-jdk
 WORKDIR /app
 RUN addgroup -S testuser && adduser -S testuser -G testuser && chown -R testuser:testuser /app
@@ -7,7 +7,7 @@ COPY ${JAR_FILE} petclinic.jar
 
 EXPOSE 8080
 
-FROM alpine:3.18.2 AS runtime
+FROM dhanush-docker-test-virtual/alpine:3.18.2 AS runtime
 RUN apk add --no-cache openjdk17-jre
 WORKDIR /app
 COPY --from=builder /app/petclinic.jar .
