@@ -1,8 +1,10 @@
 # Stage 1: Login to Docker registry
-FROM alpine:3.14 as registry-login
+FROM docker:latest as builder
 ARG DOCKER_USERNAME
 ARG DOCKER_PASSWORD
 RUN echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin vmdhanush.jfrog.io
+WORKDIR /app
+
 
 # Stage 2: Build the application
 FROM vmdhanush.jfrog.io/docker-remote/alpine:3.18.2 AS builder
