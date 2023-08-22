@@ -7,7 +7,7 @@ COPY ${JAR_FILE} petclinic.jar
 
 EXPOSE 8080
 
-FROM dhanush-docker-test-virtual/alpine:3.18.2 AS runtime
+FROM alpine:3.18.2 AS runtime
 RUN apk add --no-cache openjdk17-jre
 WORKDIR /app
 COPY --from=builder /app/petclinic.jar .
