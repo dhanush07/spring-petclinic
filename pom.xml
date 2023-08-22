@@ -5,6 +5,14 @@
   <artifactId>spring-petclinic</artifactId>
   <version>3.1.0-SNAPSHOT</version>
 
+  <distributionManagement>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>a0pz336o1wnx1-artifactory-primary-0-snapshots</name>
+        <url>https://vmdhanush.jfrog.io/artifactory/dhanush-mvn-libs-snapshot</url>
+    </snapshotRepository>
+</distributionManagement>
+
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
