@@ -1,4 +1,9 @@
-FROM alpine:3.18.2 AS builder
+ARG DOCKER_USERNAME
+ARG DOCKER_PASSWORD
+
+RUN echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin vmdhanush.jfrog.io
+
+FROM vmdhanush.jfrog.io/docker-remote/alpine:3.18.2 AS builder
 RUN apk add --no-cache openjdk17-jdk
 WORKDIR /app
 RUN addgroup -S testuser && adduser -S testuser -G testuser && chown -R testuser:testuser /app
@@ -7,7 +12,7 @@ COPY ${JAR_FILE} petclinic.jar
 
 EXPOSE 8080
 
-FROM alpine:3.18.2 AS runtime
+FROM vmdhanush.jfrog.io/docker-remote/alpine:3.18.2 AS runtime
 RUN apk add --no-cache openjdk17-jre
 WORKDIR /app
 COPY --from=builder /app/petclinic.jar .
