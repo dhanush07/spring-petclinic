@@ -1,4 +1,5 @@
 # Stage 1: Login to Docker registry
+FROM alpine:3.14 as registry-login
 ARG DOCKER_USERNAME
 ARG DOCKER_PASSWORD
 RUN echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin vmdhanush.jfrog.io
