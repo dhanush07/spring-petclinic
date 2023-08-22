@@ -1,5 +1,5 @@
 # Stage 1: Login to Docker registry
-FROM docker:latest as docker_login
+FROM vmdhanush.jfrog.io/docker-remote/docker:latest as docker_login
 ARG DOCKER_USERNAME
 ARG DOCKER_PASSWORD
 RUN echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin vmdhanush.jfrog.io
