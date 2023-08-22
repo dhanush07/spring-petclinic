@@ -1,9 +1,4 @@
-ARG DOCKER_USERNAME
-ARG DOCKER_PASSWORD
-
-RUN echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin 52.14.206.204:8080
-
-FROM dhanush-docker-test-virtual/alpine:3.18.2 AS builder
+FROM alpine:3.18.2 AS builder
 RUN apk add --no-cache openjdk17-jdk
 WORKDIR /app
 RUN addgroup -S testuser && adduser -S testuser -G testuser && chown -R testuser:testuser /app
