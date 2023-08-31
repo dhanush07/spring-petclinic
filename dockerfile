@@ -1,9 +1,9 @@
 # Stage 1: Login to Docker registry
-FROM docker:latest as docker_login
-ARG DOCKER_USERNAME
-ARG DOCKER_PASSWORD
+#FROM docker:latest as docker_login
+#ARG DOCKER_USERNAME
+#ARG DOCKER_PASSWORD
 # [NOHTTP] http:// URLs are used intentionally. Suppressed warning.
-RUN echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin http://52.14.206.204:8082/
+#RUN echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin http://52.14.206.204:8082/
 
 # Stage 2: Build the application
 FROM alpine:3.18.2 AS build_stage
