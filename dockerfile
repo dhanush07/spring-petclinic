@@ -2,7 +2,7 @@
 FROM 172.31.7.126:8082/dhanush-docker-test-remote/docker:latest as docker_login
 ARG DOCKER_USERNAME
 ARG DOCKER_PASSWORD
-RUN echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin 172.31.7.126:8082
+#RUN echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin 172.31.7.126:8082
 
 # Stage 2: Build the application
 FROM 172.31.7.126:8082/dhanush-docker-test-remote/alpine:3.18.2 AS build_stage
