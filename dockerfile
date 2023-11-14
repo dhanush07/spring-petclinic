@@ -2,7 +2,7 @@
 FROM https://soleng.jfrog.io/artifactory/dhanush-demo-remote/docker:latest as docker_login
 ARG DOCKER_USERNAME
 ARG DOCKER_PASSWORD
-#RUN echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin https://soleng.jfrog.io
+RUN echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin https://soleng.jfrog.io
 
 # Stage 2: Build the application
 FROM https://soleng.jfrog.io/artifactory/dhanush-demo-remote/alpine:3.18.2 AS build_stage
