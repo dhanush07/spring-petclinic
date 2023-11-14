@@ -5,8 +5,8 @@ ARG DOCKER_PASSWORD
 RUN echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin soleng.jfrog.io
 
 # Stage 2: Build the application
-FROM soleng.jfrog.io/dhanush-demo-remote/nginx AS build_stage
-FROM soleng.jfrog.io/dhanush-demo-remote/mysql AS build_stage
+FROM soleng.jfrog.io/dhanush-demo-remote/nginx AS build_stage1
+FROM soleng.jfrog.io/dhanush-demo-remote/mysql AS build_stage2
 FROM soleng.jfrog.io/dhanush-demo-remote/alpine:3.18.2 AS build_stage
 RUN apk add --no-cache openjdk17-jdk
 WORKDIR /app
