@@ -1,5 +1,5 @@
 # Stage 1: Login to Docker registry
-FROM soleng.jfrog.io/artifactory/dhanush-demo-remote/docker:latest as docker_login
+FROM soleng.jfrog.io/artifactory/dhanush-demo-remote/docker:latest
 ARG DOCKER_USERNAME
 ARG DOCKER_PASSWORD
 RUN echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin soleng.jfrog.io
