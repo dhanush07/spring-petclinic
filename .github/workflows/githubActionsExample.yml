@@ -28,8 +28,7 @@ jobs:
           # Ping the server
           jf rt ping
           # Configure Maven project's repositories
-          jf mvnc --repo-resolve-releases dhanush-github-libs-release --repo-resolve-snapshots dhanush-github-libs-snapshots --repo-deploy-releases dhanush-github-libs-release --repo-deploy-snapshots dhanush-github-libs-snapshots 
-          # Install and publish project
+          jf mvnc --repo-resolve-releases dhanush-github-libs-release --repo-resolve-snapshots dhanush-github-libs-snapshot --repo-deploy-releases dhanush-github-libs-release-local --repo-deploy-snapshots dhanush-github-libs-snapshot-local
           jf mvn install -DskipTests
           # Scan for SCA
           jf audit
