@@ -1,13 +1,16 @@
 name: "Maven Build using JFrog Platform"
-on: push
+
+on: 
+  push:
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Set up Java 17
         uses: actions/setup-java@v3
         with:
@@ -19,7 +22,6 @@ jobs:
         env:
           # JFrog platform URL
           JF_URL: https://dhanushartifactory.devopsacc.team
-
           # JFrog Platform access token
           JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
 
@@ -28,7 +30,20 @@ jobs:
           # Ping the server
           jf rt ping
           # Configure Maven project's repositories
-          jf mvnc --repo-resolve-releases dhanush-github-libs-release --repo-resolve-snapshots dhanush-github-libs-snapshot --repo-deploy-releases dhanush-github-libs-release-local --repo-deploy-snapshots dhanush-github-libs-snapshot-local
+          jf mvnc --repo-resolve-releases dhanush-github-libs-release \
+                  --repo-resolve-snapshots dhanush-github-libs-snapshot \
+                  --repo-deploy-releases dhanush-github-libs-release-local \
+                  --repo-deploy-snapshots dhanush-github-libs-snapshot-local
           jf mvn install -DskipTests
           # Scan for SCA
           jf audit
+
+      - name: Log in to Artifactory Docker registry
+        run: |
+          docker login dhanushartifactory.devopsacc.team:443 \
+            -u admin \
+            -p Jfrog@2365
+
+      - name: Build Docker image
+        run: |
+          docker build -t dhanushartifactory.devopsacc.team:443/your-docker-image-name:latest .
