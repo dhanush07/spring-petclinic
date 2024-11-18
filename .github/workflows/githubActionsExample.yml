@@ -46,4 +46,4 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t dhanushartifactory.devopsacc.team:443/your-docker-image-name:latest .
+          docker build -t dhanushartifactory.devopsacc.team:443/spring-petclinic:latest .
