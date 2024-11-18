@@ -15,7 +15,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
-          distribution: 'adopt'  # Corrected distribution name
+          distribution: 'adopt'
 
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v4
@@ -38,7 +38,7 @@ jobs:
           # Scan for SCA
           jf audit
 
-      - name: Log in to Artifactory Docker registry with API key
+      - name: Log in to Artifactory Docker registry 
         run: |
           docker login dhanushartifactory.devopsacc.team:443 \
             -u admin \
