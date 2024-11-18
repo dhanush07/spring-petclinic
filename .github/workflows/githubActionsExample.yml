@@ -1,4 +1,4 @@
-name: "Setup JFrog CLI Example"
+name: "Maven Build using JFrog Platform"
 on: push
 
 jobs:
