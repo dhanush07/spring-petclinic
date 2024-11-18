@@ -7,10 +7,16 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Set up Java 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v4
         env:
-          # JFrog platform url (for example: https://acme.jfrog.io)
+          # JFrog platform url
           JF_URL: https://dhanushartifactory.devopsacc.team
 
           # JFrog Platform access token
@@ -24,5 +30,3 @@ jobs:
           jf mvnc --repo-resolve-releases dhanush-github-libs-release --repo-resolve-snapshots dhanush-github-libs-snapshots
           # Install and publish project
           jf mvn clean install -DskipTests
-
-#1
