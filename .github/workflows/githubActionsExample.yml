@@ -20,3 +20,7 @@ jobs:
         run: |
           # Ping the server
           jf rt ping
+          # Configure Maven project's repositories
+          jf mvnc --repo-resolve-releases dhanush-github-libs-release --repo-resolve-snapshots dhanush-github-libs-snapshots
+          # Install and publish project
+          jf mvn clean install -DskipTests
