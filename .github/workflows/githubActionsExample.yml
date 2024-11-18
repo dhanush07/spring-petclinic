@@ -12,12 +12,12 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '17'
-          distribution: 'adoptopenjdk'  # Specify the distribution (AdoptOpenJDK, Zulu, OpenJDK)
+          distribution: 'adoptium'  # Corrected distribution
 
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v4
         env:
-          # JFrog platform url
+          # JFrog platform URL
           JF_URL: https://dhanushartifactory.devopsacc.team
 
           # JFrog Platform access token
