@@ -38,11 +38,11 @@ jobs:
           # Scan for SCA
           jf audit
 
-      - name: Log in to Artifactory Docker registry
+      - name: Log in to Artifactory Docker registry with API key
         run: |
           docker login dhanushartifactory.devopsacc.team:443 \
             -u admin \
-            -p Jfrog@2365
+            -p cmVmdGtuOjAxOjE3NjM0ODgwODM6ZGhSMEpONklqUUZMUWFRZjZlS2VTbTZ6OUhI
 
       - name: Build Docker image
         run: |
