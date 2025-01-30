@@ -37,8 +37,8 @@ jobs:
        - name: Run Audit scan for the git workspace
          run: jf audit .
 
-       - name: Set CLI Config
-         run: jf mvn-config --global=true --repo-resolve-releases=$PLATFORM_REPO --repo-resolve-snapshots=$PLATFORM_REPO --repo-deploy-releases=$DEPLOY_REPO --repo-deploy-snapshots=$DEPLOY_REPO
+       - name: Set Maven Repo's
+         run: jf mvn-config --repo-resolve-releases=$PLATFORM_REPO --repo-resolve-snapshots=$PLATFORM_REPO --repo-deploy-releases=$DEPLOY_REPO --repo-deploy-snapshots=$DEPLOY_REPO
 
        - name: Create build
          run: jf mvn clean install --build-name="ps-jfrog-gitbub-oidc-mvn-publish" --build-number=${{ github.run_number }}
