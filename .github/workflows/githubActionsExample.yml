@@ -21,7 +21,7 @@ jobs:
         uses: jfrog/setup-jfrog-cli@v4
         env:
           # JFrog platform URL
-          JF_URL: https://dhanushartifactory.devopsacc.team
+          JF_URL: https://dhanushvm07.jfrog.io/
           # JFrog Platform access token
           JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
 
