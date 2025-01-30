@@ -11,8 +11,6 @@ jobs:
   build:
      runs-on: ubuntu-24.04
      env:
-      OIDC_AUDIENCE: 'ps-jfrog-oidc'
-      OIDC_PROVIDER: 'ps-jfrog-labs'
       PLATFROM_REPO: 'sumlearn-maven-virtual'
       DEPLOY_REPO: 'sumlearn-maven'
       
@@ -30,11 +28,11 @@ jobs:
    
        - name: Setup JFrog CLI
          uses: jfrog/setup-jfrog-cli@v4
-         env:  
-           JF_URL: ${{ vars.JF_URL }}
-         with:
-           oidc-provider-name: ${{ env.OIDC_PROVIDER }}
-           oidc-audience: ${{ env.OIDC_AUDIENCE }}
+         env:
+           # JFrog platform URL
+           JF_URL: https://dhanushartifactory.devopsacc.team
+           # JFrog Platform access token
+           JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
 
        - name: Run Audit scan for the git workspace
          run: jf audit .
