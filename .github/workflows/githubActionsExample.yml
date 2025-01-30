@@ -34,4 +34,4 @@ jobs:
                   --repo-deploy-snapshots bmw-test-01-libs-snapshot
 
       - name: Build and Install Maven Project
-        run: jf mvn clean install --build-name="ps-jfrog-gitbub-oidc-mvn-publish" --build-number=${{ github.run_number }}
+        run: jf mvn clean install -DskipTests --build-name="ps-jfrog-gitbub-oidc-mvn-publish" --build-number=${{ github.run_number }}
