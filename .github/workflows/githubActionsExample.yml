@@ -43,7 +43,10 @@ jobs:
                   
       - name: Jfrog Xray Scan 
         run: jf audit
-
+        
+      - name: Jfrog Curation-Audit
+        run: jf ca
+        
       - name: Build and Install Maven Project
         run: jf mvn clean install -DskipTests --build-name="BMW-Training-mvn-publish" --build-number=${{ github.run_number }}
 
