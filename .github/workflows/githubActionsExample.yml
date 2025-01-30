@@ -17,14 +17,6 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
-      - name: Cache Maven Dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.m2/repository
-          key: maven-${{ runner.os }}-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            maven-${{ runner.os }}-
-
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v4
         env:
@@ -41,8 +33,6 @@ jobs:
                   --repo-deploy-releases bmw-test-01-libs-release \
                   --repo-deploy-snapshots bmw-test-01-libs-snapshot
                   
-      - name: Jfrog Xray Scan 
-        run: jf audit
         
       - name: Jfrog Curation-Audit
         run: jf ca
