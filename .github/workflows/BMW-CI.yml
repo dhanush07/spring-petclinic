@@ -37,8 +37,8 @@ jobs:
        - name: Ping JFrog Server
          run: jf rt ping
 
-       - name: Run Audit scan for the git workspace
-         #run: jf audit .
+      # - name: Run Audit scan for the git workspace
+         # run: jf audit .
 
        - name: Set Maven Repo's
          run: jf mvnc --repo-resolve-releases bmw-test-01-libs-release \
