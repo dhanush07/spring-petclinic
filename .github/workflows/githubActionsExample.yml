@@ -1,4 +1,4 @@
-name: "Maven Build using JFrog Platform"
+name: "BMW-GithubActions-Example"
 
 on: 
   workflow_dispatch:
@@ -30,20 +30,10 @@ jobs:
           # Ping the server
           jf rt ping
           # Configure Maven project's repositories
-          jf mvnc --repo-resolve-releases dhanush-github-libs-release \
-                  --repo-resolve-snapshots dhanush-github-libs-snapshot \
-                  --repo-deploy-releases dhanush-github-libs-release-local \
-                  --repo-deploy-snapshots dhanush-github-libs-snapshot-local
+          jf mvnc --repo-resolve-releases bmw-test-01-libs-release \
+                  --repo-resolve-snapshots bmw-test-01-libs-snapshot \
+                  --repo-deploy-releases bmw-test-01-libs-release \
+                  --repo-deploy-snapshots bmw-test-01-libs-snapshot
           jf mvn install -DskipTests
           # Scan for SCA
           jf audit
-
-      - name: Log in to Artifactory Docker registry 
-        run: |
-          docker login dhanushartifactory.devopsacc.team:443 \
-            -u admin \
-            -p cmVmdGtuOjAxOjE3NjM0ODgwODM6ZGhSMEpONklqUUZMUWFRZjZlS2VTbTZ6OUhI
-
-      - name: Build Docker image
-        run: |
-          docker build -t dhanushartifactory.devopsacc.team:443/spring-petclinic:latest .
