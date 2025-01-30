@@ -11,8 +11,8 @@ jobs:
   build:
      runs-on: ubuntu-24.04
      env:
-      PLATFROM_REPO: 'sumlearn-maven-virtual'
-      DEPLOY_REPO: 'sumlearn-maven'
+      PLATFROM_REPO: 'bmw-test-01-libs-release'
+      DEPLOY_REPO: 'bmw-test-01-libs-snapshot'
       
      steps:
        - name: Checkout
