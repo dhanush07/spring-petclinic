@@ -20,23 +20,21 @@ jobs:
       - name: Setup JFrog CLI
         uses: jfrog/setup-jfrog-cli@v4
         env:
-          # JFrog platform URL
           JF_URL: https://dhanushvm07.jfrog.io/
-          # JFrog Platform access token
           JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
 
-      - name: Run JFrog CLI
-        run: 
-          # Ping the server
-          jf rt ping
-      - name: Run JFrog CLI
-        run:
-          # Configure Maven project's repositories
+      - name: Run JFrog CLI Ping
+        run: jf rt ping
+
+      - name: Configure Maven repositories in JFrog CLI
+        run: |
           jf mvnc --repo-resolve-releases bmw-test-01-libs-release \
                   --repo-resolve-snapshots bmw-test-01-libs-snapshot \
                   --repo-deploy-releases bmw-test-01-libs-release \
                   --repo-deploy-snapshots bmw-test-01-libs-snapshot
-      - name: Mvn Clean install
-          jf mvn install -DskipTests
-          # Scan for SCA
-          # jf audit
+
+      - name: Build and Install Maven Project
+        run: jf mvn install -DskipTests
+
+      - name: Scan for SCA (Optional)
+        run: jf audit
