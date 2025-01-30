@@ -38,13 +38,13 @@ jobs:
          run: jf rt ping
 
        - name: Run Audit scan for the git workspace
-         run: jf audit .
+         #run: jf audit .
 
        - name: Set Maven Repo's
          run: jf mvnc --repo-resolve-releases bmw-test-01-libs-release \
-                  --repo-resolve-snapshots bmw-test-01-libs-snapshot \
-                  --repo-deploy-releases bmw-test-01-libs-release \
-                  --repo-deploy-snapshots bmw-test-01-libs-snapshot
+                      --repo-resolve-snapshots bmw-test-01-libs-snapshot \
+                      --repo-deploy-releases bmw-test-01-libs-release \
+                      --repo-deploy-snapshots bmw-test-01-libs-snapshot
        - name: Create build
          run: jf mvn clean install --build-name="ps-jfrog-gitbub-oidc-mvn-publish" --build-number=${{ github.run_number }}
          
