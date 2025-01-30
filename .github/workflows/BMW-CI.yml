@@ -33,13 +33,18 @@ jobs:
            JF_URL: https://dhanushvm07.jfrog.io/
            # JFrog Platform access token
            JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
+           
+       - name: Ping JFrog Server
+         run: jf rt ping
 
        - name: Run Audit scan for the git workspace
          run: jf audit .
 
        - name: Set Maven Repo's
-         run: jf mvn-config --repo-resolve-releases=$PLATFORM_REPO --repo-resolve-snapshots=$PLATFORM_REPO --repo-deploy-releases=$DEPLOY_REPO --repo-deploy-snapshots=$DEPLOY_REPO
-
+         run: jf mvnc --repo-resolve-releases bmw-test-01-libs-release \
+                  --repo-resolve-snapshots bmw-test-01-libs-snapshot \
+                  --repo-deploy-releases bmw-test-01-libs-release \
+                  --repo-deploy-snapshots bmw-test-01-libs-snapshot
        - name: Create build
          run: jf mvn clean install --build-name="ps-jfrog-gitbub-oidc-mvn-publish" --build-number=${{ github.run_number }}
          
@@ -51,9 +56,5 @@ jobs:
 
        - name: Publish build
          run: jf rt bp ps-jfrog-gitbub-oidc-mvn-publish ${{ github.run_number }}
-
-       - name: Set propertes
-         run: |
-           jf rt sp "tier=app;ver=${{ github.run_number }}"  --build="ps-jfrog-gitbub-oidc-mvn-publish/${{ github.run_number }}"
 
 
