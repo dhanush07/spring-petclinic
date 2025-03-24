@@ -33,11 +33,11 @@ jobs:
                   --repo-deploy-releases bmw-test-01-libs-release \
                   --repo-deploy-snapshots bmw-test-01-libs-snapshot
                   
-     # - name: Jfrog Curation-Audit
-     #   run: jf audit
+      - name: Jfrog Curation-Audit
+        run: jf audit
         
-     # - name: Jfrog Curation-Audit
-      #  run: jf ca
+      - name: Jfrog Curation-Audit
+        run: jf ca
         
       - name: Build and Install Maven Project
         run: jf mvn clean install -DskipTests --build-name="BMW-Training-mvn-publish" --build-number=${{ github.run_number }}
